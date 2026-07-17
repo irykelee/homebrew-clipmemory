@@ -6,6 +6,7 @@ Official Homebrew tap for [ClipMemory](https://github.com/irykelee/clipmemory), 
 
 ```bash
 brew tap irykelee/clipmemory
+brew trust irykelee/clipmemory
 brew install --cask clipmemory
 ```
 
