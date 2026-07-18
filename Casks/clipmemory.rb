@@ -1,6 +1,6 @@
 cask "clipmemory" do
-  version "2.4.1"
-  sha256 "b457d4452e733eb7058c27a6716e9e94da969015036577a39b8c72ad549155e5"
+  version "2.4.2"
+  sha256 "f75ec3304d9681b321febef30a894db98360aef4eab918ecbeaf8730f138ca2f"
 
   url "https://github.com/irykelee/clipmemory/releases/download/v\#{version}/ClipMemory.tar.gz"
   name "ClipMemory"
