@@ -1,0 +1,16 @@
+name: cask-audit
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  audit:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: brew audit (cask syntax / deprecated fields)
+        run: brew audit --cask ./Casks/clipmemory.rb
+      - name: brew style (rubocop-cask format)
+        run: brew style --cask ./Casks/clipmemory.rb
