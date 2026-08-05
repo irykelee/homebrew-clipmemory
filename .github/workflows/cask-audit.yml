@@ -9,7 +9,7 @@ jobs:
   audit:
     runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       # brew audit no longer accepts a file path (disabled upstream), and
       # 2026-era Homebrew refuses to audit casks from untrusted taps — so
       # tap + trust first, then audit by name. push to main is the actual
