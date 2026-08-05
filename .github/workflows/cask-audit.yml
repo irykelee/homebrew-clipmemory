@@ -10,12 +10,15 @@ jobs:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v4
-      # brew audit no longer accepts a file path (disabled upstream);
-      # tap the repo so the cask resolves by name. push to main is the
-      # actual update path for this tap (release.yml pushes directly),
-      # so auditing the latest main cask covers real changes.
-      - name: Tap repo (resolve cask by name)
-        run: brew tap irykelee/homebrew-clipmemory
+      # brew audit no longer accepts a file path (disabled upstream), and
+      # 2026-era Homebrew refuses to audit casks from untrusted taps — so
+      # tap + trust first, then audit by name. push to main is the actual
+      # update path for this tap (release.yml pushes directly), so auditing
+      # the latest main cask covers real changes.
+      - name: Tap + trust repo (resolve cask by name)
+        run: |
+          brew tap irykelee/homebrew-clipmemory
+          brew trust irykelee/homebrew-clipmemory
       - name: brew audit (cask syntax / deprecated fields)
         run: brew audit --cask clipmemory
       - name: brew style (rubocop-cask format)
