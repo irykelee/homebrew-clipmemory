@@ -4,7 +4,7 @@ cask "clipmemory" do
 
   url "https://github.com/irykelee/clipmemory/releases/download/v#{version}/ClipMemory.tar.gz"
   name "ClipMemory"
-  desc "Clipboard history manager for macOS with encryption and Quick Bar"
+  desc "Clipboard history manager with encryption and Quick Bar"
   homepage "https://github.com/irykelee/clipmemory"
 
   auto_updates true
@@ -12,12 +12,14 @@ cask "clipmemory" do
 
   app "ClipMemory.app"
 
+  # C1: the root encryption key lives in the Keychain, not in files —
+  # remove it too so zap leaves no key material behind.
   zap script: {
         executable:   "/usr/bin/security",
         args:         ["delete-generic-password", "-s", "com.clipmemory.app", "-a", "root-encryption-key"],
         must_succeed: false,
       },
-      trash: [
+      trash:  [
         "~/Library/Application Support/ClipMemory",
         "~/Library/Preferences/com.clipmemory.app.plist",
       ]
